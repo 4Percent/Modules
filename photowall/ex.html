@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Photo Wall</title>
+	<style type="text/css">
+		body{padding:0 100px;background-color:#ddd;}
+		.cmt{color:#777;}
+		.panel{float:left;line-height:50px;}
+		pre{font-size:18px;color:#777;}
+		ul{position:relative;margin:0 auto;padding:20px;border:1px solid #333;width:760px;height:760px;}
+		#pw li{float:left;list-style:none;width:150px;margin:20px;background-color:#4eb981;text-align:center;color:#fff;font-size:50px;line-height: 150px;}
+		.active{box-shadow:0 0 20px 5px #21AB9E;}
+	</style>
+</head>
+<body>
+	<div class="panel">
+		<div><button id="btn">Shuffle</button></div>
+		<div><input type="radio" name="mode" id="normal"><label for="normal">Traditional</label></div>
+		<div><input type="radio" name="mode" id="phone" checked="checked"><label for="phone">Phone Icons</label></div>
+	</div>
+	<ul id="pw">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+		<li>11</li>
+		<li>12</li>
+		<li>13</li>
+		<li>14</li>
+		<li>15</li>
+		<li>16</li>
+	</ul>
+	<script type="text/javascript" src="js/m_photo_wall.min.js"></script>
+	<script type="text/javascript">
+		var pw = new PhotoWall({
+			container : document.querySelector('ul'),
+			mode : 'phone',
+			activeClass : 'active',
+			duration : 200
+		});
+		btn.onclick = function (){
+			pw.shuffle();
+		}
+		normal.onclick = function (){
+			pw.setMode('normal');
+		}
+		phone.onclick = function (){
+			pw.setMode('phone');
+		}
+	</script>
+	<h3>调用方法 :</h3>
+	<pre>
+		new PhotoWall({
+			container : document.querySelector('ul'),		<span class="cmt">//不可为空,所有照片的直接父元素</span>
+			mode : 'phone',		<span class="cmt">//可空,默认traditional</span>
+			activeClass : 'active',		<span class="cmt">//可空,方块碰撞时改变的class</span>
+			duration : 200		<span class="cmt">//可空,动画的持续时间</span>
+		});
+	</pre>
+</body>
+</html>

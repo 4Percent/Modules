@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{background-color:#ddd;}
+		.spec{padding-left:200px;line-height:50px;}
+		.cmt{color:#777;}
+		pre{font-weight:bold;font-size:18px;}
+		.demo{display:block;margin:0 auto;}
+		#div{position: relative;width:500px;height:500px;}
+		a{position: absolute;height:40px;width:100px;font-size:20px;line-height:2;background-color:#333;color:#fff;text-decoration: none;text-align: center;}
+		#div2{position: relative;width:500px;height:500px;transform-style:preserve-3d;perspective:1000px;}
+	</style>
+</head>
+<body>
+	<div id="div" class="demo">
+		<a href="javascript:;">01</a>
+		<a href="javascript:;">02</a>
+		<a href="javascript:;">03</a>
+		<a href="javascript:;">04</a>
+		<a href="javascript:;">05</a>
+		<a href="javascript:;">06</a>
+		<a href="javascript:;">07</a>
+		<a href="javascript:;">08</a>
+		<a href="javascript:;">09</a>
+		<a href="javascript:;">10</a>
+		<a href="javascript:;">11</a>
+		<a href="javascript:;">12</a>
+	</div>
+	<section class="spec">
+		<h3>兼容版(IE8),IE8以下也能用,在firefox中性能不是太好</h3>
+		<h3>new CloudTag(document.getElementById('container'),200,1000); 3个参数</h3>
+		<div>container : 所有标签的直接父容器</div>
+		<div>r : 球的半径</div>
+		<div>perspective : 景深,相当于CSS3的perspective</div>
+	</section>
+	<div id="div2" class="demo">
+		<a href="javascript:;">01</a>
+		<a href="javascript:;">02</a>
+		<a href="javascript:;">03</a>
+		<a href="javascript:;">04</a>
+		<a href="javascript:;">05</a>
+		<a href="javascript:;">06</a>
+		<a href="javascript:;">07</a>
+		<a href="javascript:;">08</a>
+		<a href="javascript:;">09</a>
+		<a href="javascript:;">10</a>
+		<a href="javascript:;">11</a>
+		<a href="javascript:;">12</a>
+	</div>
+	<section class="spec">
+		<h3>CSS3版,适用于高级浏览器,性能更好</h3>
+		<h3>new CloudTagCss3(document.getElementById('container'),200); 2个参数</h3>
+		<div>container : 同上</div>
+		<div>r : 同上</div>
+		<div>景深直接在父元素中指定</div>
+	</section>
+	<canvas id="c" width="800" height="800" class="demo"></canvas>
+	<script type="text/javascript" src="js/cloud_tag.min.js"></script>
+	<script type="text/javascript">
+		new CloudTag(div,200,1000);
+		new CloudTagCss3(div2,200);
+		new CloudTagCanvas(c,{
+			perspective : 1000,
+			r : 200,
+			detectR : 300,
+			centerX : 400,
+			centerY : 400,
+			points : [
+				{type:'star',bg:'#f2992e',hbg:'#4eb981',innerR:25,outerR:60,text:'Star',color:'#fff',handler:handler},
+				{type:'image',src:'uncleCat.jpg',w:100,h:100,text:'UncleCat',color:'#fff',handler:handler},
+				{type:'hexagon',bg:'#d9534f',hbg:'#1DD8CF',r:50,text:'Hexagon',color:'#fff',handler:handler},
+				{type:'round',bg:'#fe0066',hbg:'#333',r:40,text:'Sphere',color:'#fff',fs:18,handler:handler},
+				{type:'image',src:'uncleCat.jpg',w:100,h:100,text:'UncleCat',color:'#fff',handler:handler},
+				{type:'star',bg:'#f2992e',hbg:'#4eb981',innerR:25,outerR:60,text:'Star',color:'#fff',handler:handler},
+				{type:'rect',bg:'#529ecc',hbg:'#00a9eb',w:80,h:60,text:'Rect',color:'#fff',handler:handler},
+				{type:'round',bg:'#fe0066',hbg:'#333',r:40,text:'Sphere',color:'#fff',fs:18,handler:handler},
+				{type:'hexagon',bg:'#d9534f',hbg:'#1DD8CF',r:50,text:'Hexagon',color:'#fff',handler:handler},
+				{type:'rect',bg:'#529ecc',hbg:'#00a9eb',w:80,h:60,text:'Rect',color:'#fff',handler:handler},
+				{type:'star',bg:'#f2992e',hbg:'#4eb981',innerR:25,outerR:60,text:'Star',color:'#fff',handler:handler},
+				{type:'star',bg:'#f2992e',hbg:'#4eb981',innerR:25,outerR:60,text:'Star',color:'#fff',handler:handler},
+				{type:'image',src:'uncleCat.jpg',w:100,h:100,text:'UncleCat',color:'#fff',handler:handler},
+				{type:'rect',bg:'#529ecc',hbg:'#00a9eb',w:80,h:60,text:'Rect',color:'#fff',handler:handler},
+			]
+		});
+		function handler(){
+			alert(this.text);
+		}
+	</script>
+	<section class="spec">
+		<h3>Canvas版,可添加点击事件,4种默认图形,点一下试试?</h3>
+		<pre>
+			new CloudTagCanvas(document.getElementById('canvas'),{
+				perspective : 1000,		<span class="cmt">//可空,景深,默认值1000</span>
+				r : 200,		<span class="cmt">//不可空,半径</span>
+				detectR : 300,		<span class="cmt">//可空,球心距离鼠标多远时开始做出反应</span>
+				centerX : 400,		<span class="cmt">//不可空,球心的X坐标</span>
+				centerY : 400,		<span class="cmt">//不可空,球心的Y坐标</span>
+				points : [		<span class="cmt">//球面上的标签</span>
+					{
+						type : 'star',		<span class="cmt">//不可空,图形类型,此处为星星</span>
+						bg : '#000',		<span class="cmt">//不可空,初始背景</span>
+						hbg : '#fff',		<span class="cmt">//可空,鼠标hover时的背景</span>
+						innerR : 20,		<span class="cmt">//不可空,星星的内半径</span>
+						outerR : 50,		<span class="cmt">//不可空,星星的外半径</span>
+						text : 'Star',		<span class="cmt">//可空,标签内的文字</span>
+						color : '#333',		<span class="cmt">//可空,文字的颜色</span>
+						handler : function		<span class="cmt">//可空,鼠标点击时的处理函数,函数内的this为当前的json对象</span>
+					},
+					{
+						type : 'rect',		<span class="cmt">//矩形</span>
+						bg : '#000',
+						hbg :'#fff',
+						w : 100,		<span class="cmt">//不可空,矩形的宽</span>
+						h : 80,		<span class="cmt">//不可空,矩形的高</span>
+						text : 'Rect',
+						color : '#fff',
+						handler : function
+					},
+					{
+						type : 'hexagon' 或者 'round',		<span class="cmt">//正六边形或圆</span>
+						bg : '#000',
+						hbg : '#fff',
+						r : 100,		<span class="cmt">//不可空,六边形或圆的半径</span>
+						text : 'Round',
+						color : '#333',
+						handler : function
+					},
+					{
+						type : 'image',		<span class="cmt">//图片</span>
+						src : 'unclecat.jpg',		<span class="cmt">//不可空,图片的src</span>
+						w : 100,
+						h : 100,
+						text : 'Uncle Cat',
+						color : '#333',
+						handler : function
+					}
+				]
+			});
+		</pre>
+	</section>
+</body>
+</html>

@@ -1,0 +1,5 @@
+@charset 'UTF-8';
+#c-menu{display:none;position:fixed;width:150px;border:1px solid #333;background-color:#f2f2f2;line-height:40px;border-bottom:none;text-indent:20px;}
+#c-menu li{border-bottom:1px solid #333;color:#bbb;cursor:default;}
+#c-menu .c-li-act{color:#000;}
+#c-menu .c-li-act:hover{background-color:#c8c8c8;}

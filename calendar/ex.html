@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Calendar</title>
+	<style type="text/css">
+		body{background-color:#ddd;}
+		.demo-wrap{width:1200px;margin:0 auto;}
+		.demo{float:left;margin-right:100px;width:500px;height:500px;text-align: center;}
+		.spec{padding-left:200px;line-height:50px;clear:both;}
+		pre{font-size:18px;font-weight:bold;}
+		.cmt{color:#777;}
+		li{list-style: none;}
+	</style>
+</head>
+<body>
+	<div class="demo-wrap">
+		<div class="demo">
+			<input type="text" name="date">
+		</div>
+		<div class="demo" id="d1"></div>
+	</div>
+	<section class="spec">
+		<h3>点击版日历(我承认我直接借鉴了win10的设计)</h3>
+		<h3>Css文件会自动引入</h3>
+		<pre>
+			示例布局:
+				&lt;div class="demo d1"&gt;
+					&lt;input type="text" name="date"&gt;
+				&lt;/div&gt;
+			js:
+				var cal = new SimpleCalendar({
+					input:document.getElementsByName('date')[0],		<span class="cmt">//对应的input标签模式</span>
+					format : ['-','-',''],		<span class="cmt">//可空,输出的日期格式</span>
+					filter : function (year,month,day){
+						console.log(year,month,day);
+						if(!(day%5))
+							return true;
+					},		<span class="cmt">//可空,返回true的日子会被打上标记(图中黄点)</span>
+					handler : function (year,month,day){
+						console.log(year,month,day);
+					},		<span class="cmt">//可空,点击日期时要额外执行的函数</span>
+					autoHide : true		<span class="cmt">//可空,第一次点击日期后是否直接隐藏,默认是false</span>
+				});
+				new SimpleCalendar({
+					parent:document.getElementById('d1'),		<span class="cmt">//对应静态放置模式,两种模式二选一</span>
+					...
+				});
+		</pre>
+	</section>
+	<div class="demo-wrap">
+		<div class="demo">
+			<input type="text" name="date2">
+		</div>
+		<div class="demo" id="d2"></div>
+	</div>
+	<section class="spec">
+		<h3>滚轮版日历(我承认我借鉴了大法的设计)</h3>
+		<h3>虽然更小,但这个写起来比上面那个麻烦多了,不想再写第二遍了...</h3>
+		<pre>
+			new ScrollCalendar({		<span class="cmt">//基本同上,但是没有filter和autoHide</span>
+				input : document.getElementsByName('date2')[0],
+				format : ['-','-',''],
+				handler : function (y,m,d){
+					console.log(y,m,d);
+				}
+			});
+			new ScrollCalendar({
+				parent : document.getElementById('d2'),
+				...
+			});
+		</pre>
+	</section>
+	<script type="text/javascript" src="js/simple_calendar.min.js"></script>
+	<script type="text/javascript" src="js/scroll_calendar.min.js"></script>
+	<script type="text/javascript">
+		var cal = new SimpleCalendar({
+			input:document.getElementsByName('date')[0],
+			format : ['-','-',''],
+			filter : function (year,month,day){
+				console.log(year,month,day);
+				if(!(day%5))
+					return true;
+			},
+			handler : function (year,month,day){
+				console.log(year,month,day);
+			},
+			autoHide : true
+		});
+		new SimpleCalendar({
+			parent:document.getElementById('d1'),
+			format : ['-','-',''],
+			filter : function (year,month,day){
+				console.log(year,month,day);
+				if(!(day%5))
+					return true;
+			},
+			handler : function (year,month,day){
+				console.log(year,month,day);
+			},
+			autoHide : true
+		});
+		new ScrollCalendar({
+			input : document.getElementsByName('date2')[0],
+			format : ['-','-',''],
+			handler : function (y,m,d){
+				console.log(y,m,d);
+			}
+		});
+		new ScrollCalendar({
+			parent : document.getElementById('d2'),
+			format : ['-','-',''],
+			handler : function (y,m,d){
+				console.log(y,m,d);
+			}
+		});
+	</script>
+</body>
+</html>

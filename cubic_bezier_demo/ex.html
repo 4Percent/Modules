@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贝塞尔曲线demo</title>
+	<style type="text/css">
+		body{background-color:#ddd;}
+		.spec{padding:0 100px;line-height:40px;}
+		ul{padding:0;margin:0;}
+		li{list-style:none;}
+	</style>
+	<link rel="stylesheet" href="css/cubic_bezier_demo.css">
+</head>
+<body>
+	<canvas width="1280" height="800" id="c"></canvas>
+	<script type="text/javascript" src="js/cubic_bezier_demo.min.js"></script>
+	<script type="text/javascript">
+		(function (global){
+			var canvas = document.getElementById('c');
+			new BezierDemo(document.getElementById('c'));
+		})(window);
+	</script>
+	<section class="spec">
+		<h3>调用方法 :</h3>
+		<div>new BezierDemo(document.getElementById('canvas'));</div>
+		<div>每个点都可以拖动</div>
+		<div>鼠标右键增加和减少点</div>
+		<div>配色什么的就不要吐槽了</div>
+	</section>
+</body>
+</html>

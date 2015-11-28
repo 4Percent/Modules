@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Player</title>
+	<style type="text/css">
+		body{margin:0;overflow-y:scroll;background-color:#ddd;}
+		.spec{padding:0 100px;}
+		canvas{display:block;margin:0 auto;}
+	</style>
+	<script type="text/javascript" src="js/simpleplayer.min.js"></script>
+</head>
+<body>
+	<canvas id="canvas" width="1920" height="800"></canvas>
+	<script type="text/javascript">
+		(function (global){
+			var canvas = document.getElementById('canvas');
+			function resizeCanvas(){
+				canvas.width = Math.max(document.documentElement.clientWidth,1280);
+				canvas.height = Math.max(document.documentElement.clientHeight,720);
+			}
+			resizeCanvas();
+			global.addEventListener('resize',function (){
+				resizeCanvas();
+			},false);
+			new SimplePlayer(canvas,['Little Me.mp3','Hello - Martin Solveig and Dragonette.mp3']);
+		})(window);
+	</script>
+	<section class="spec">
+		<h3>已知问题:</h3>
+		<ul>
+			<li>Firefox可能会卡</li>
+		</ul>
+		<h3>调用方法:</h3>
+		<ul>
+			<li>引入js文件</li>
+			<li>new SimplePlayer(document.getElementById('canvas'),[musicURL,musicURL,...])</li>
+		</ul>
+	</section>
+</body>
+</html>

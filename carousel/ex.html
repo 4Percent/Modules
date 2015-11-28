@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{background-color:#ddd;}
+		ol{margin:0;padding:0;}
+		li{list-style:none;}
+		a{text-decoration: none;}
+		.spec{padding-left:200px;line-height:50px;}
+		pre{font-weight:bold;font-size:18px;}
+		.cmt{color:#777;}
+		.container{width:1200px;height:800px;margin:100px auto;}
+		#container2{width:800px;height:450px;}
+		#container2 img{display:block;width:100%;height:100%;}
+		.controls{display:flex;align-items:center;justify-content:center;width:100%;flex-wrap:wrap;}
+		.tab-wrap{flex:240px 0;text-align:center;margin:0 50px;}
+		.t1{overflow: hidden;width:240px;}
+		.t1 li{width:40px;height:40px;border-radius:50%;float:left;margin:10px;background-color:#fff;color:#000;cursor:pointer;line-height: 40px;text-align: center;}
+		.t1 .act{background-color:#333;color:#fff;}
+	</style>
+	<link rel="stylesheet" href="css/simple_carousel.css">
+</head>
+<body>
+	<div class="container m-s-crs" id="container">
+		<a class="m-crs-card" href="javascript:;">1</a>
+		<a class="m-crs-card" href="javascript:;">2</a>
+		<a class="m-crs-card" href="javascript:;">3</a>
+		<a class="m-crs-card" href="javascript:;">4</a>
+		<a class="m-crs-card" href="javascript:;">5</a>
+	</div>
+	<section class="spec">
+		<h3>兼容版(IE8),最后的cover模式为保证效果牺牲了性能</h3>
+		<h3>含四种模式:vertical horizontal fade cover,所有模式的效果见CSS3版,CSS3版重写了这几种模式,保证了性能</h3>
+		<pre>
+			若使用内置样式和按钮,Css文件需手动引入
+			事例布局:
+			&lt;div class="container m-s-crs" id="container"&gt;
+				&lt;a class="m-crs-card" href="javascript:;"&gt;1&lt;/a&gt;
+				&lt;a class="m-crs-card" href="javascript:;"&gt;2&lt;/a&gt;
+				&lt;a class="m-crs-card" href="javascript:;"&gt;3&lt;/a&gt;
+				&lt;a class="m-crs-card" href="javascript:;"&gt;4&lt;/a&gt;
+				&lt;a class="m-crs-card" href="javascript:;"&gt;5&lt;/a&gt;
+			&lt;/div&gt;
+			js:
+			var crs = new SimpleCarousel(container,{
+				btns:true,		<span class="cmt">//可空,使用内置按钮，效果如图</span>
+				easing:'easeOut',		<span class="cmt">//可空,运动模式,使用了Tween的函数,包括easeOut easeIn bounce linear</span>
+				btnMode:'horizontal',		<span class="cmt">//内置按钮对应的模式,如果使用了内置按钮则必须填写</span>
+				tabs:'horizontal',		<span class="cmt">//可空,使用内置tab,内置tab包含横排版(horizontal,效果如图)和竖排版(vertical)</span>
+				tabMode:'cover',		<span class="cmt">//内置tab对应的模式,如果使用了内置tab则必须填写</span>
+				autoPlay:'cover',		<span class="cmt">//可空,自动播放的模式</span>
+				autoPlayInterval:1500,		<span class="cmt">//自动播放间隔,如果开启了自动播放则必须填写</span>
+				duration:2000		<span class="cmt">//可空,每个动画的持续时间</span>
+			});
+			crs.addTabs(document.getElementById('tab'),'horizontal','act');		<span class="cmt">//增加一个新的tab,三个参数是tab的包裹容器、对应模式、当前项的class</span>
+			crs.addBtn(document.getElementById('btn'),'vertical',-1);		<span class="cmt">//增加一个按钮,最后一个参数为-1时点击向前,为1时点击向后</span>
+		</pre>
+	</section>
+	<div class="container m-s-crs" id="container2">
+		<a href="#1" class="m-crs-card"><img src="../imgs/s1.jpg" alt=""></a>
+		<a href="#2" class="m-crs-card"><img src="../imgs/s2.jpg" alt=""></a>
+		<a href="#3" class="m-crs-card"><img src="../imgs/s3.jpg" alt=""></a>
+		<a href="#4" class="m-crs-card"><img src="../imgs/s4.jpg" alt=""></a>
+	</div>
+	<div class="controls">
+		<div class="tab-wrap">
+			horizontal
+			<ol class="t1" id="t1">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			vertical
+			<ol class="t1" id="t2">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			fade
+			<ol class="t1" id="t3">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			cover
+			<ol class="t1" id="t4">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			explode
+			<ol class="t1" id="t5">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			blowaway
+			<ol class="t1" id="t6">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			reverse
+			<ol class="t1" id="t7">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			flipover
+			<ol class="t1" id="t8">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			cube
+			<ol class="t1" id="t9">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+		<div class="tab-wrap">
+			adboard
+			<ol class="t1" id="t10">
+				<li class="act">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ol>
+		</div>
+	</div>
+	<section class="spec">
+		<h3>CSS3版</h3>
+		<h3>10种模式如上,为啥有的是动词,有的是形容词,有的是名词?一目了然的名字不好起啊!</h3>
+		<h3>已知问题:有些模式在不同版本的Chrome下会出现各种奇怪效果。Firefox和Edge正常</h3>
+		<pre>
+			若使用内置样式和按钮,Css文件需手动引入
+			示例布局:
+			&lt;div class="container m-s-crs" id="container2"&gt;
+				&lt;a href="#1" class="m-crs-card"&gt;&lt;img src="../imgs/1.jpg" alt=""&gt;&lt;/a&gt;
+				&lt;a href="#2" class="m-crs-card"&gt;&lt;img src="../imgs/2.jpg" alt=""&gt;&lt;/a&gt;
+				&lt;a href="#3" class="m-crs-card"&gt;&lt;img src="../imgs/3.jpg" alt=""&gt;&lt;/a&gt;
+				&lt;a href="#4" class="m-crs-card"&gt;&lt;img src="../imgs/4.jpg" alt=""&gt;&lt;/a&gt;
+			&lt;/div&gt;
+			js:
+			var crs = new Css3Carousel(container2,{
+				tabs:'horizontal',
+				tabMode:'flipover',
+				cols:10,		<span class="cmt">//针对一些分块的效果设定的属性,如果使用则必须指定</span>
+				rows:5,		<span class="cmt">//同上</span>
+				duration:1000,		<span class="cmt">//有些模式的运动时间会长于指定值</span>
+				perspective:1000,		<span class="cmt">//可空,默认1000,景深,即CSS3的景深</span>
+				newWindow : true,		<span class="cmt">//可空,点击链接时是否在新窗口中打开链接,有些模式会使原有的链接不可操控,指定false或不指定都会在当前窗口打开</span>
+				autoPlay:'randomMode',		<span class="cmt">//随机模式,效果如上</span>
+				autoPlayInterval:2000
+			});
+			crs.stop();		<span class="cmt">//停止自动播放</span>
+			crs.restart();		<span class="cmt">//重启自动播放</span>
+		</pre>
+	</section>
+	<script type="text/javascript" src="js/simple_carousel.min.js"></script>
+	<script type="text/javascript">
+		(function (global){
+			var simple = new SimpleCarousel(container,{
+				btns:true,
+				easing:'easeOut',
+				btnMode:'horizontal',
+				tabs:'horizontal',
+				tabMode:'cover',
+				autoPlay:'cover',
+				autoPlayInterval:1500
+			}),
+			crs = new Css3Carousel(container2,{
+				tabs:'horizontal',
+				tabMode:'flipover',
+				cols:10,
+				rows:5,
+				duration:1000,
+				perspective:1000,
+				newWindow : true,
+				autoPlay:'randomMode',
+				autoPlayInterval:2000
+			});
+			crs.addTabs(t1,'horizontal','act');
+			crs.addTabs(t2,'vertical','act');
+			crs.addTabs(t3,'fade','act');
+			crs.addTabs(t4,'cover','act');
+			crs.addTabs(t5,'explode','act');
+			crs.addTabs(t6,'blowaway','act');
+			crs.addTabs(t7,'reverse','act');
+			crs.addTabs(t8,'flipover','act');
+			crs.addTabs(t9,'cube','act');
+			crs.addTabs(t10,'adboard','act');
+			container.isPlaying = container2.isPlaying = true;
+			function pause(container,crs){
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				if(scrollTop + document.documentElement.clientHeight < container.offsetTop || scrollTop > container.offsetTop + container.offsetHeight){
+					crs.stop();
+					container.isPlaying = false;
+				}else{
+					if(!container.isPlaying){
+						container.isPlaying = true;
+						crs.restart();
+					}
+				}
+			}
+			global.addEventListener('scroll',function (){
+				pause(container,simple);
+				pause(container2,crs);
+			},false);
+		})(window);
+	</script>
+</body>
+</html>
